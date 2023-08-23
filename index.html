@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+
+        }
+        .head_sec{
+            width:100%;
+            height:auto;
+            padding:18px;
+            text-align: center;
+            background-color: #C0B9CC;
+            
+         }
+         .main_sec{
+        
+            
+        
+         }
+         .card-body{
+            padding:0 !important;
+         }
+         .card{
+            padding: 18px !important;
+            margin: 1rem auto;
+         }
+         .card-img-top{
+            width:294px;
+            height:254px;
+            margin-bottom:18px;
+
+         }
+         .card-title{
+            font-size: 24px;
+         }
+         .btn{
+            float: right;
+            font-size: 18px;
+         }
+        
+
+    </style>
+</head>
+<body>
+    <header class="head_sec">
+        <h1>Welcome.</h1>
+    </header>
+    <section class="main_sec">
+        <div class="container">
+            <div id="app" class="row">
+             
+            </div>
+        </div>
+    </section>
+
+    <script>
+    
+    fetch("https://syllametric.com/sylla-test-front/index.php?id=mango",{
+            method:'GET',
+            headers:{
+             "Content-type":"application/json",
+             "Accept":"*/*",
+            }
+    }) .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); 
+  })
+  .then(data => {
+    const appElement = document.getElementById('app');
+    console.log(appElement);
+  
+  data.forEach(item => {
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('col-lg-4', 'col-md-6');
+    cardDiv.innerHTML = `
+      <div class="card" style="width: 330px;">
+        <img src="${item.img}"" class="card-img-top" alt="Dummy...">
+        <div class="card-body">
+          <h5 class="card-title">${item.heading}</h5>
+          <p class="card-text">${item.text.substring(0, 180)}</p>
+          <a href="#" class="btn btn-secondary">Action</a>
+        </div>
+      </div>
+    `;
+    
+    appElement.appendChild(cardDiv);
+});
+   
+
+
+   
+    
+  
+  }).catch(error => {
+        console.error(error);
+    });
+
+    </script>
+    
+    
+    
+</body>
+</html>
