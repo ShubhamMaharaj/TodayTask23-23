@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue.js CDN Example</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header class="head_sec">
+            <h1>Welcome.</h1>
+        </header>
+        <section class="main_sec">
+            <div class="container">
+                <div class="row">
+                    
+        
+                    <div v-for="(data,index) in apiResp" :key="index" class="col-lg-4 col-md-6 col-xs-12" :id="data.id">
+                        <div class="card" style="width: 330px;">
+                            <img :src="data.img" class="card-img-top" alt="Dummy...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{data.heading}}</h5>
+                              <div class="text_area">
+                                <p class="card-text">{{data.text.substring(0, 180) }}...</p>
+
+                              </div>
+                             
+                              <a href="#" class="btn btn-secondary">Action</a>
+                            </div>
+                          </div>
+                    </div>
+               
+                      
+                  
+               
+            </div>
+        </section>
+        
+      </div>
+    <script>
+        new Vue({
+          el: '#app',
+          data: {
+            apiResp: ''
+          },
+          mounted(){
+            fetch("https://syllametric.com/sylla-test-front/index.php?id=mango",{
+            method:'GET',
+            headers:{
+             "Content-type":"application/json",
+             "Accept":"*/*",
+            }
+    }) .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); 
+  })
+  .then(data => {
+
+    this.apiResp =data;
+    
+  
+  }).catch(error => {
+        console.error(error);
+    });
+
+          },
+          methods:{
+
+            printHellow(){
+
+                this.message ="Welcome"
+
+
+            }
+
+          }
+        });
+      </script>
+    </body>
+    <style>
+        
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+
+        }
+        .head_sec{
+            width:100%;
+            height:auto;
+            padding:18px;
+            text-align: center;
+            background-color: #C0B9CC;
+            
+         }
+         .main_sec{
+        
+            
+        
+         }
+         .card-body{
+            padding:0 !important;
+         }
+         .card{
+            padding: 18px !important;
+            margin: 1rem auto;
+         }
+         .card-img-top{
+            width:294px;
+            height:254px;
+            margin-bottom:18px;
+
+         }
+         .card-title{
+            font-size: 24px;
+         }
+         .btn{
+            float: right;
+            font-size: 18px;
+         }
+
+    </style>
+    
+</html>
