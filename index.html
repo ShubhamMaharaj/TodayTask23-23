@@ -8,48 +8,73 @@
 
     <title>Document</title>
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing: border-box;
-
-        }
-        .head_sec{
-            width:100%;
-            height:auto;
-            padding:18px;
-            text-align: center;
-            background-color: #C0B9CC;
-            
-         }
-         .main_sec{
         
-            
-        
-         }
-         .card-body{
-            padding:0 !important;
-         }
-         .card{
-            padding: 18px !important;
-            margin: 1rem auto;
-         }
-         .card-img-top{
-            width:294px;
-            height:254px;
-            margin-bottom:18px;
+      *{
+          margin:0;
+          padding:0;
+          box-sizing: border-box;
+         
 
-         }
-         .card-title{
-            font-size: 24px;
-         }
-         .btn{
-            float: right;
-            font-size: 18px;
-         }
-        
+      }
+      body{
+       background:#F3F0F6;
+      }
+      .head_sec{
+          width:100%;
+          height:auto;
+          padding:18px;
+          text-align: center;
+          background-color: #C0B9CC;
+          
+       }
+       .card{
+          height:440px;
+      
+       }
+        .card-body{
+          padding:0;
+       }
+       .card-text{
+         
+        line-height: 18px;
+        font-size: 12px;
+        color:black;
+        margin:0;
+     
 
-    </style>
+
+       }
+       .btn{
+       float: right;
+       font-size: 18px;
+       background: rgb(72,74,75);
+       color: #fff;
+       padding: 0.2rem 1rem;
+       margin-top: 0.3rem;
+       }
+      
+      
+       .card{
+          padding: 18px !important;
+          margin: 1rem auto;
+          border:none;
+          background:#fff;
+       }
+       .card-img-top{
+          width:294px;
+          height:254px;
+          margin-bottom:18px;
+
+       }
+       .card-title{
+          font-size: 24px;
+       }
+       .btn{
+          float: right;
+          font-size: 18px;
+       }
+
+  </style>
 </head>
 <body>
     <header class="head_sec">
@@ -89,7 +114,12 @@
         <img src="${item.img}"" class="card-img-top" alt="Dummy...">
         <div class="card-body">
           <h5 class="card-title">${item.heading}</h5>
-          <p class="card-text">${item.text.substring(0, 180)}</p>
+          <div class="text_area">
+                                <p class="card-text">${item.text.substring(0, 130)}...</p>
+                                <a href="#" class="btn ">Action</a>
+
+                              </div>
+          <p class="card-text">/p>
           <a href="#" class="btn btn-secondary">Action</a>
         </div>
       </div>
